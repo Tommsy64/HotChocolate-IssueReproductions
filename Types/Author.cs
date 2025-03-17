@@ -1,6 +1,5 @@
-namespace NodeResolverBugReproduction.Types;
+namespace HotChocolateIssueReproduction.Types;
 
-[Node]
 public class Author
 {
     public int Id { get; init; }
@@ -11,7 +10,7 @@ public class Author
 public static partial class AuthorNode
 {
     [NodeResolver]
-    public static Author? GetAuthorById([ID<Author>] int id/*, QueryContext<Author> queryContext */) // No QueryContext
+    public static Author? GetAuthorById(int id)
     {
         return new Author
         {

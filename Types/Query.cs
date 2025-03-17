@@ -1,4 +1,4 @@
-namespace NodeResolverBugReproduction.Types;
+namespace HotChocolateIssueReproduction.Types;
 
 [QueryType]
 public static class Query

@@ -1,8 +1,7 @@
 using GreenDonut.Data;
 
-namespace NodeResolverBugReproduction.Types;
+namespace HotChocolateIssueReproduction.Types;
 
-[Node]
 public class Book
 {
     public int Id { get; init; }
@@ -15,7 +14,7 @@ public class Book
 public static partial class BookNode
 {
     [NodeResolver]
-    public static Book? GetBookById([ID<Book>] int id, QueryContext<Book> queryContext)
+    public static Book? GetBookById(int id, QueryContext<Book> queryContext)
     {
         return new Book
         {
