@@ -8,13 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.0-p.18" />
-    <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="15.1.0-p.18" />
-    <PackageReference Include="HotChocolate.Data" Version="15.1.0-p.18" />
-    <PackageReference Include="HotChocolate.Types.Analyzers" Version="15.1.0-p.18">
+    <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.3" />
+    <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="15.1.3" />
+    <PackageReference Include="HotChocolate.Data" Version="15.1.3" />
+    <PackageReference Include="HotChocolate.Types.Analyzers" Version="15.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    <PackageReference Include="GreenDonut.Data" Version="15.1.3" />
+    <PackageReference Include="GreenDonut.Data.EntityFramework" Version="15.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

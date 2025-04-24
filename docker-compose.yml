@@ -1,0 +1,11 @@
+name: hotchocolate-tmp
+
+# No persistant volume
+services:
+  postgres:
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: hotchocolate
+      POSTGRES_PASSWORD: hotchocolate_secret
+      POSTGRES_DB: hotchocolate
+    ports: [ "5433:5432" ]
