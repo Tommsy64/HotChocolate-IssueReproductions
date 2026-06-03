@@ -1,9 +1,13 @@
-# ToPageAsync() Issue Reproduction
+# ToPageAsync() selects OrderBy properties missing from the projected DTO
 
-1. `docker compose up -d` to start the ephemeral database (no persistant volume, defaults to port `5433`).
-2. `dotnet ef database update`
-3. `dotnet run`
-4. Run the following GraphQL query:
+Reproduces a `QueryHelpers.EnsureOrderPropsAreSelected` error in `GreenDonut.Data` on
+Hot Chocolate `16.0.14-p.1`. See https://github.com/ChilliCream/graphql-platform/issues/8262.
+
+No external database is required — the app uses the Entity Framework Core in-memory
+provider and seeds data on startup.
+
+1. `dotnet run`
+2. Open http://localhost:5095/graphql and run the following GraphQL query:
 
 ```graphql
 query {
@@ -19,3 +23,6 @@ Exception is thrown:
 ```text
 Property 'System.String Name2' is not defined for type 'HotChocolateIssueReproduction.Types.SpeakerDto' (Parameter 'property')
 ```
+
+The same exception is thrown by the `speakers2` field (which uses `[UsePaging]` instead of
+`[UseConnection]`).

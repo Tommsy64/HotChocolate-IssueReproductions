@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(
-        "Host=127.0.0.1;Port=5433;Username=hotchocolate;Password=hotchocolate_secret"))
+    .AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("repro"))
     .AddGraphQLServer()
     .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = builder.Environment.IsDevelopment())
     .AddSorting() // Error if this isn't added
@@ -15,6 +14,12 @@ builder.Services
     .AddObjectType<PageInfo>(o => o.Name("RelativePageInfo"));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.EnsureCreated();
+}
 
 app.MapGraphQL();
 
